@@ -1,0 +1,13 @@
+#!bin/bash
+
+#PBS -N g1.count.wc
+#PBS -q scholar
+#PBS -l nodes=1:ppn=4
+#PBS -l walltime=04:00:00
+
+cd $PBS_O_WORKDIR
+
+#cat bowtie2.1.nomatch | grep -v ^@ | awk '{print "@"$1"\n"$10"\n+\n"$11}' > bowtie2.nomatch.r1.fq
+#cat bowtie2.2.nomatch | grep -v ^@ | awk '{print "@"$1"\n"$10"\n+\n"$11}' > bowtie2.nomatch.r2.fq
+
+wc bowtie2.nomatch.1.fq bowtie2.nomatch.2.fq > count.txt

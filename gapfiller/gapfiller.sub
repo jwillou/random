@@ -1,0 +1,40 @@
+#!/bin/bash
+
+#PBS -N gapfiller.81raw2.sub
+#PBS -q scholar
+#PBS -l nodes=1:ppn=16
+#PBS -l walltime=08:00:00
+
+cd $PBS_O_WORKDIR
+
+# cat copies the command file to the output
+cat gapfiller.sub
+
+date +"%d %B %Y %H:%M:%S"
+echo ""
+
+module use /apps/group/bioinformatics/modules
+module load GapFiller
+module load perl
+
+perl GapFiller.pl \
+-l /scratch/carter/j/jwillou/Mono/sspacelibraryraw.txt \
+-s /scratch/carter/k/kthurner/group/monpu_81raw/monpu_81raw.final.scaffolds.fasta \
+-m 135 \
+-T 15 \
+-b /scratch/carter/k/kthurner/group/last.cleaned.81raw2 \
+&> /scratch/carter/k/kthurner/group/gapfiller81raw2.log\
+
+echo ""
+date +"%d %B %Y %H:%M:%S"
+
+
+ 
+
+
+
+
+
+
+
+

@@ -1,0 +1,37 @@
+#!/usr/bin/perl -w
+
+#PBS -N fq2faUP
+#PBS -q standby
+#PBS -l nodes=1:ppn=1,naccesspolicy=shared
+#PBS -l walltime=04:00:00
+#PBS -m abe
+#PBS -M jwillou@purdue.edu
+
+#Converts fastq to fasta
+
+chdir '/scratch/snyder/j/jwillou/salmon_poolseq';
+
+my $file = "unpaired.fq";
+my $outfile = "unpaired.fa";
+open (INFILE, "<", $file);
+open (OUTFILE, ">", $outfile);
+
+my $i = 1;
+while(my $line = <INFILE>){
+	if($i % 4 == 1){
+		$line =~ s/\@/\>/;
+		print OUTFILE $line;
+	}elsif($i % 4 == 2){
+		print OUTFILE $line;
+	}elsif($i % 4 == 3){
+	}elsif($i % 4 == 0){
+	}else{
+		print "Mod error";	
+	}
+	$i++;
+}
+
+close INFILE;
+close OUTFILE;
+
+exit 0;

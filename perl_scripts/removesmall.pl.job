@@ -1,0 +1,59 @@
+#!/usr/bin/perl -w
+
+#PBS -N removesmall
+#PBS -q standby
+#PBS -l nodes=1:ppn=1
+#PBS -l walltime=04:00:00
+#PBS -m abe
+#PBS -M jwillou@purdue.edu
+
+##########################################################################################
+#
+# Removes contigs/scaffolds that are less than specified value
+# Be sure to change path, filenames, and cutoff value before use. 
+# Janna Willoughby, 10/10/2014
+#
+##########################################################################################
+chdir '/scratch/snyder/j/jwillou/maniculatus';
+
+#set length cutoff and input/output files
+my $cutoff  = 10000;
+my $file    = "maniculatus.unplaced.scaf.fna";
+my $outfile = "maniculatus.unplaced.scaf.trimmed10000.fa";
+
+open (INFILE, "<", $file);
+open (OUTFILE, ">", $outfile);
+
+my $header;
+my $seq;
+
+#read in file, save header information
+while(my $line = <INFILE>){
+	chomp $line;
+	if($line=~/^\>/){
+		if($header){
+			my $len = length($seq);
+			if($len>=$cutoff){
+				print OUTFILE "$header\n$seq\n";
+			}
+			$seq    = 0;
+			$header = 0;
+		}
+	$header = $line;		
+	}
+	#if line is sequence data concatonate all seqs
+	else {
+		if($seq){
+			$seq = "$seq$line";
+		}
+		else{
+			$seq = $line;
+		}
+	}
+}
+
+close INFILE;
+close OUTFILE;
+
+exit 0;
+

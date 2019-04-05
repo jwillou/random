@@ -1,0 +1,18 @@
+#!/bin/bash
+
+#PBS -N trin.bowtie2
+#PBS -q scholar
+#PBS -l nodes=1:ppn=16
+#PBS -l walltime=24:00:00
+#PBS -m abe
+#PBS -M jwillou@purdue.edu
+
+module use /apps/group/bioinformatics/modules
+module load bowtie2
+
+cd $PBS_O_WORKDIR
+
+bowtie2-build -f Gr3_AbyssAssembly_1kb.fa trin.genome_1kb
+
+bowtie2 -p 16 -f -x trin.genome_1kb -U trinity.ref.fasta -S trin.bt2.monref.sam --fast-local --un trin.noalign.fasta --al trin.align.fasta &>trinity.bowtie2.log
+

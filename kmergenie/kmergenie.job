@@ -1,0 +1,16 @@
+#!/bin/sh -l
+
+#PBS -N kmergenie.g1
+#PBS -q scholar
+#PBS -l nodes=1:ppn=16
+#PBS -l walltime=04:00:00
+
+module load python
+module load r/3.1.0
+module use /apps/group/bioinformatics/modules
+module load kmergenie
+
+cd $PBS_O_WORKDIR
+
+cat monpu.noadapt.nomatch.r1.50.fq monpu.noadapt.nomatch.r2.50.fq > monpu.noadapt.nomatch.all.50.fq
+kmergenie monpu.noadapt.nomatch.all.50.fq --diploid --one-pass -k 91 -l 31 -s 1 -e 1000 &>kmergenie.out.log

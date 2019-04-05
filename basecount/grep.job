@@ -1,0 +1,20 @@
+#!bin/bash
+
+#PBS -N g1.count
+#PBS -q scholar
+#PBS -l nodes=1:ppn=4
+#PBS -l walltime=04:00:00
+
+cd $PBS_O_WORKDIR
+
+grep -c 'AATGATACGGCGA' bowtie2.nomatch.1.fq > r1Auni.txt
+grep -c 'AATGATACGGCGA' bowtie2.nomatch.2.fq > r2Auni.txt
+
+grep -c 'GATCGGAAGAGCA' bowtie2.nomatch.1.fq > r1Aindex.txt
+grep -c 'GATCGGAAGAGCA' bowtie2.nomatch.2.fq > r2Aindex.txt
+
+grep -c 'AGATCGGAAGAGC' bowtie2.nomatch.1.fq > r1Aunirev.txt
+grep -c 'AGATCGGAAGAGC' bowtie2.nomatch.2.fq > r2Aunirev.txt
+
+grep -c 'CAAGCAGAAGACG' bowtie2.nomatch.1.fq > r1Aindexrev.txt
+grep -c 'CAAGCAGAAGACG' bowtie2.nomatch.2.fq > r2Aindexrev.txt

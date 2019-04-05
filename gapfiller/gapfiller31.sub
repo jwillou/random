@@ -1,0 +1,24 @@
+#!/bin/bash
+
+#PBS -N gapfiller.31c.sub
+#PBS -q scholar
+#PBS -l nodes=1:ppn=16
+#PBS -l walltime=04:00:00
+#PBS -m abe
+#PBS -M jwillou@purdue.edu
+
+cd $PBS_O_WORKDIR
+
+module use /apps/group/bioinformatics/modules
+module load GapFiller
+module load perl
+
+cd /scratch/carter/j/jwillou/Mono/gapfiller30/gapfiller30_31cleaned
+
+GapFiller.pl \
+-l /scratch/carter/j/jwillou/Mono/sspacelibrary.txt \
+-s /scratch/carter/j/jwillou/Mono/sspace30_scaffolds/monpu30_31cleaned/monpu30_31cleaned.final.scaffolds.fasta \
+-m 135 \
+-T 15 \
+-b last.cleaned.31 \
+&> gapfiller31.log\

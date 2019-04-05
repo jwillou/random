@@ -1,0 +1,19 @@
+#!/bin/sh -l
+
+#PBS -N ceg
+#PBS -q standby
+#PBS -l nodes=1:ppn=16
+#PBS -l walltime=04:00:00
+#PBS -m abe
+#PBS -M jwillou@purdue.edu
+
+module use /apps/group/bioinformatics/modules
+module load cegma
+module load geneid/1.4.4
+module load HMMER/3.0 
+module load blast/2.2.25+
+
+cd $PBS_O_WORKDIR
+
+cegma --genome ../trinity.noref.copy &>cegma.log
+

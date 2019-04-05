@@ -1,0 +1,23 @@
+#!/bin/sh -l
+
+#PBS -N reapr31.g1
+#PBS -q fnrgenetics
+#PBS -l nodes=1:ppn=16
+#PBS -l walltime=24:00:00
+#PBS -m abe
+#PBS -M jwillou@purdue.edu
+
+module use /apps/group/bioinformatics/modules
+module load perl
+module load r
+
+cd /scratch/carter/j/jwillou/Mono/reapr/clean31
+
+#perfectmap
+#/scratch/carter/j/jwillou/Mono/reapr/Reapr_1.0.17/reapr perfectmap facheck31c.fa.fa ../../monpu.noadapt.nomatch.r1.30.fa ../../monpu.noadapt.nomatch.r2.30.fa 200 perfect &> perfect.log
+
+#smaltmap
+#/scratch/carter/j/jwillou/Mono/reapr/Reapr_1.0.17/reapr smaltmap facheck31c.fa.fa ../../monpu.noadapt.nomatch.r1.30.fa ../../monpu.noadapt.nomatch.r2.30.fa  mapped.bam &> smalt.log
+
+#pipeline
+/scratch/carter/j/jwillou/Mono/reapr/Reapr_1.0.17/reapr pipeline facheck31c.fa.fa mapped.bam reapr31c perfect &> pipe.log

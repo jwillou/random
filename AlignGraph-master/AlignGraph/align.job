@@ -1,0 +1,20 @@
+#!/bin/bash
+
+#PBS -N aligngraph.sb
+#PBS -q standby
+#PBS -l nodes=1:ppn=20
+#PBS -l walltime=4:00:00
+#PBS -m abe
+#PBS -M jwillou@purdue.edu
+
+#,naccesspolicy=shared
+
+cd $PBS_O_WORKDIR
+
+module use /apps/group/bioinformatics/modules
+module load blat/35
+module load bowtie2/2.2.5
+
+cd /scratch/snyder/j/jwillou/AlignGraph-master/AlignGraph
+
+./AlignGraph --read1 /scratch/snyder/j/jwillou/trimmomatic/allr1.fa --read2 /scratch/snyder/j/jwillou/trimmomatic/allr2.fa --contig /scratch/snyder/j/jwillou/abyss/leucopus.scaf.fa --genome /scratch/snyder/j/jwillou/maniculatus/maniculatus.unplaced.scaf.trimmed10000.fa --distanceLow  100 --distanceHigh 1500 --extendedContig extendedContigs.fa --remainingContig remainingContigs.fa &> aligngraph.log 

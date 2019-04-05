@@ -1,0 +1,16 @@
+#!/bin/sh -l
+
+#PBS -N quast.sub 
+#PBS -q scholar 
+#PBS -l nodes=1:ppn=16 
+#PBS -l walltime=168:00:00 
+#PBS -m abe
+#PBS -M jwillou@purdue.edu
+ 
+module use /apps/group/bioinformatics/modules 
+module load quast 
+ 
+ 
+cd $PBS_O_WORKDIR 
+
+quast.py -o quast_refass -R trinity.ref.fasta -t 8 --eukaryote --min-contig 10 rnaseq-forward-pairedv2.fa rnaseq-reverse-pairedv2.fa &>quast.ref.log

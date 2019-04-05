@@ -1,0 +1,23 @@
+#!/bin/bash
+
+#PBS -N bowtie2.ref
+#PBS -q scholar
+#PBS -l nodes=1:ppn=16
+#PBS -l walltime=04:00:00
+#PBS -m abe
+#PBS -M jwillou@purdue.edu
+
+cd $PBS_O_WORKDIR
+
+module use /apps/group/bioinformatics/modules
+module load bowtie2/2.2.4
+
+#bowtie2-build -f --large-index Gr3_AbyssAssembly_1kb.fa  Gr3_Abyss &>bowtie2.index.log
+#bowtie2-inspect --summary Gr3_Abyss &>bowtie2.summary.log
+bowtie2 -f --fast-local -k 1 --un trinity.noref.unaligned.fa --al trinity.noref.aligned.fa -x Gr3_Abyss -U trinity.noref.fasta -S bowtie2.noref.sam &> bowtie2.align.log
+
+bowtie2-build -f --large-index trinity.noref.aligned.fa noref.align &> noref.align.log
+bowtie2-inspect --summary noref.align &> noref.align.summary.log
+
+bowtie2-build -f --large-index trinity.noref.unaligned.fa noref.unalign &> noref.unalign.log
+bowtie2-inspect --summary noref.unalign &> noref.unalign.summary.log
