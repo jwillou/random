@@ -1,0 +1,14 @@
+#!/bin/bash
+
+#PBS -N zip
+#PBS -q christ99
+#PBS -l nodes=1:ppn=1,naccesspolicy=shared
+#PBS -l walltime=300:00:00
+#PBS -m abe
+#PBS -M jwillou@purdue.edu
+
+cd $PBS_O_WORKDIR
+
+#gzip 016402_Pool-2_CGATGT_R1_filteredNseq.fastq
+
+#gzip 016402_Pool-2_CGATGT_R2_filteredNseq.fastq 

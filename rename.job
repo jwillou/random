@@ -1,0 +1,42 @@
+#!/bin/bash
+
+#PBS -N renamefq
+#PBS -q christ99
+#PBS -l nodes=1:ppn=1,naccesspolicy=shared
+#PBS -l walltime=300:00:00
+#PBS -m abe
+#PBS -M jwillou@purdue.edu
+
+cd $PBS_O_WORKDIR
+
+###READ 1
+
+awk '{if( (NR-1)%4 ) print; else printf("@pool1_%d\n",cnt++)}' 016401_Pool-1_ATCACG_R1_filteredN.fastq > 016401_Pool-1_ATCACG_R1_filteredNseq.fastq
+awk '{if( (NR-1)%4 ) print; else printf("@pool1_%d\n",cnt++)}' 016401_Pool-1_ATCACG_R2_filteredN.fastq > 016401_Pool-1_ATCACG_R2_filteredNseq.fastq
+
+awk '{if( (NR-1)%4 ) print; else printf("@pool2_%d\n",cnt++)}' 016402_Pool-2_CGATGT_R1_filteredN.fastq > 016402_Pool-2_CGATGT_R1_filteredNseq.fastq
+awk '{if( (NR-1)%4 ) print; else printf("@pool2_%d\n",cnt++)}' 016402_Pool-2_CGATGT_R2_filteredN.fastq > 016402_Pool-2_CGATGT_R2_filteredNseq.fastq
+
+awk '{if( (NR-1)%4 ) print; else printf("@pool3_%d\n",cnt++)}' 016403_Pool-3_TTAGGC_R1_filteredN.fastq > 016403_Pool-3_TTAGGC_R1_filteredNseq.fastq
+awk '{if( (NR-1)%4 ) print; else printf("@pool3_%d\n",cnt++)}' 016403_Pool-3_TTAGGC_R2_filteredN.fastq > 016403_Pool-3_TTAGGC_R2_filteredNseq.fastq
+
+awk '{if( (NR-1)%4 ) print; else printf("@pool4_%d\n",cnt++)}' 016404_Pool-4_TGACCA_R1_filteredN.fastq > 016404_Pool-4_TGACCA_R1_filteredNseq.fastq
+awk '{if( (NR-1)%4 ) print; else printf("@pool4_%d\n",cnt++)}' 016404_Pool-4_TGACCA_R2_filteredN.fastq > 016404_Pool-4_TGACCA_R2_filteredNseq.fastq
+
+awk '{if( (NR-1)%4 ) print; else printf("@pool5_%d\n",cnt++)}' 016405_Pool-5_ACAGTG_R1_filteredN.fastq > 016405_Pool-5_ACAGTG_R1_filteredNseq.fastq
+awk '{if( (NR-1)%4 ) print; else printf("@pool5_%d\n",cnt++)}' 016405_Pool-5_ACAGTG_R2_filteredN.fastq > 016405_Pool-5_ACAGTG_R2_filteredNseq.fastq
+
+awk '{if( (NR-1)%4 ) print; else printf("@pool6_%d\n",cnt++)}' 016406_Pool-6_GCCAAT_R1_filteredN.fastq > 016406_Pool-6_GCCAAT_R1_filteredNseq.fastq
+awk '{if( (NR-1)%4 ) print; else printf("@pool6_%d\n",cnt++)}' 016406_Pool-6_GCCAAT_R2_filteredN.fastq > 016406_Pool-6_GCCAAT_R2_filteredNseq.fastq
+
+awk '{if( (NR-1)%4 ) print; else printf("@pool7_%d\n",cnt++)}' 016407_Pool-7_CAGATC_R1_filteredN.fastq > 016407_Pool-7_CAGATC_R1_filteredNseq.fastq
+awk '{if( (NR-1)%4 ) print; else printf("@pool7_%d\n",cnt++)}' 016407_Pool-7_CAGATC_R2_filteredN.fastq > 016407_Pool-7_CAGATC_R2_filteredNseq.fastq
+
+awk '{if( (NR-1)%4 ) print; else printf("@pool8_%d\n",cnt++)}' 016408_Pool-8_ACTTGA_R1_filteredN.fastq > 016408_Pool-8_ACTTGA_R1_filteredNseq.fastq
+awk '{if( (NR-1)%4 ) print; else printf("@pool8_%d\n",cnt++)}' 016408_Pool-8_ACTTGA_R2_filteredN.fastq > 016408_Pool-8_ACTTGA_R2_filteredNseq.fastq
+
+awk '{if( (NR-1)%4 ) print; else printf("@pool9_%d\n",cnt++)}' 016409_Pool-9_GATCAG_R1_filteredN.fastq > 016409_Pool-9_GATCAG_R1_filteredNseq.fastq
+awk '{if( (NR-1)%4 ) print; else printf("@pool9_%d\n",cnt++)}' 016409_Pool-9_GATCAG_R2_filteredN.fastq > 016409_Pool-9_GATCAG_R2_filteredNseq.fastq
+
+awk '{if( (NR-1)%4 ) print; else printf("@pool10_%d\n",cnt++)}' 016410_Pool-10_TAGCTT_R1_filteredN.fastq > 016410_Pool-10_TAGCTT_R1_filteredNseq.fastq
+awk '{if( (NR-1)%4 ) print; else printf("@pool10_%d\n",cnt++)}' 016410_Pool-10_TAGCTT_R2_filteredN.fastq > 016410_Pool-10_TAGCTT_R2_filteredNseq.fastq
